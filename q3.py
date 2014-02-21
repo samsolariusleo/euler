@@ -1,23 +1,25 @@
 import math
 
 def primefactors(num):
+    factor = 2
+    found = False
 
-    # define variables
-    primes = []
-    primefactors = []
-    
-    # generate list of prime numbers
-    for i in range(2, num):
-        if isprime(i):
-            primes.append(i)
-    
-    # from primes, test if they are factors
-    for prime in primes:
-        if num % prime == 0:
-            primefactors.append(prime)
+    # find smallest factor
+    while factor < num and not found:
+        if num % factor == 0:
+            # find the larger factor
+            largest = num // factor
 
-    # return largest prime number
-    return primefactors[-1]
+            # test if the number is prime
+            if isprime(largest):
+                 found = True
+                 break
+            else:
+                factor = factor + 1
+        else:
+            factor = factor + 1
+            
+    return largest
 
 def isprime(num):
     prime = True
